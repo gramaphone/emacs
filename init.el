@@ -11,7 +11,6 @@
 (setq echo-keystrokes 0.1)		; see what you are typing as you type it
 (setq scroll-conservatively 1)		; no jump-scrolling
 (setq scroll-margin 2)			; cursor this many lines away from edges
-(blink-cursor-mode 0)			; cursor blinkage
 
 ;;; correct backspace on terminals
 (global-set-key (kbd "C-h") 'delete-backward-char)
