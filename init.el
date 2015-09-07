@@ -1,8 +1,5 @@
-
 ;;;
 ;;; Gnu Emacs Startup File
-;;;
-;;; re-created 2013-10-10
 ;;;
 
 ;;; Miscellaneous options
@@ -14,7 +11,6 @@
 (setq echo-keystrokes 0.1)		; see what you are typing as you type it
 (setq scroll-conservatively 1)		; no jump-scrolling
 (setq scroll-margin 2)			; cursor this many lines away from edges
-;(setq-default indent-tabs-mode nil)    ; no tabs, please
 (blink-cursor-mode 0)			; cursor blinkage
 
 ;;; correct backspace on terminals
@@ -62,10 +58,6 @@
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
 (setq org-startup-indented t)		    ; hide leading asterisks
 
-;;; Viper mode
-;(setq viper-mode t)
-;(require 'viper)
-
 ;;; LaTeX mode
 (add-hook 'latex-mode-hook 'visual-line-mode) ; wrap long lines
 
@@ -74,14 +66,4 @@
 (add-to-list 'package-archives
 	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
-
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-; '(org-hide ((t (:foreground "black"))))
-)
 
