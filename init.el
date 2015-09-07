@@ -46,13 +46,6 @@
   (auto-revert-tail-mode)
   (end-of-buffer))
 
-;;; Common Lisp support
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-(add-to-list 'load-path "~/Applications/slime-2010-08-03")
-(require 'slime)
-(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-
 ;;; Org mode
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
 (setq org-startup-indented t)		    ; hide leading asterisks
