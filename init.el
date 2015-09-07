@@ -4,8 +4,6 @@
 ;;;
 ;;; re-created 2013-10-10
 ;;;
-;;; -dp
-;;;
 
 ;;; Miscellaneous options
 (setq require-final-newline t)	        ; assures the newline at eof
