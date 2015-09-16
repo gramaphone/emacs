@@ -7,7 +7,7 @@
 (setq make-backup-files nil)		; no backup copies of files
 (setq colon-double-space t)		; two spaces after each colon
 (setq inhibit-splash-screen t)          ; oh god, just cut it out
-(setq initial-scratch-message ";; Customized!\n\n")	; no comment in the scratch buffer
+(setq initial-scratch-message ";; Customized!\n\n")	; my comment in the scratch buffer
 (setq echo-keystrokes 0.1)		; see what you are typing as you type it
 (setq scroll-conservatively 1)		; no jump-scrolling
 (setq scroll-margin 2)			; cursor this many lines away from edges
@@ -35,8 +35,11 @@
 (if (not (display-graphic-p))
     (menu-bar-mode -1))
 
-;;; a bigger font.  :height is the point size of the font times 10.
-(set-face-attribute 'default nil :height 130)
+;;; toggle off scroll bars on all frames, both now and in the future
+(scroll-bar-mode)
+
+;;; font.  :height is the point size of the font times 10.
+(set-face-attribute 'default nil :font "Inconsolata" :height 140)
 
 ;;; tail
 (defun tail ()
