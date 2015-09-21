@@ -39,7 +39,8 @@
 (scroll-bar-mode)
 
 ;;; font.  :height is the point size of the font times 10.
-(set-face-attribute 'default nil :font "Inconsolata" :height 140)
+(if (not (eq system-type 'windows-nt))	; Inconsolata isn't installed at work
+    (set-face-attribute 'default nil :font "Inconsolata" :height 140))
 
 ;;; tail
 (defun tail ()
