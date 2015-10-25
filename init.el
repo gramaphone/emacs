@@ -24,8 +24,9 @@
 
 ;;; make the mode line fancy
 (size-indication-mode)			; show how big this buffer is
+(setq display-time-default-load-average nil) ; don't show the load average
 (setq display-time-format		; use ISO format for date and time
-      " %Y-%m-%d  %H:%M ")
+      " %F  %R")
 (display-time)				; put the time on the mode line
 
 ;;; a bigger window, sans toolbars.  height is the number of lines in the window
