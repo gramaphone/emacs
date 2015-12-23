@@ -54,6 +54,9 @@
 ;;; Org mode
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
 (setq org-startup-indented t)		    ; hide leading asterisks
+(if (not (display-graphic-p))
+    (add-to-list 'default-frame-alist '(background-color . "black")))
+					; so that the color of leading asterisks is less prominent
 
 ;;; LaTeX mode
 (add-hook 'latex-mode-hook 'visual-line-mode) ; wrap long lines
