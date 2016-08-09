@@ -75,7 +75,15 @@
       (while (re-search-forward "^\*\* DONE" nil t)
 	(replace-match "** TODO" nil nil)))))
 
-;;; keys
+;;; Feel free to define these keys however you like--the keybinding conventions
+;;; promise that you will not clobber anything:
+;;;    C-c <upper-case-letter>
+;;;    C-c <lower-case-letter>
+;;;    <f5>
+;;;    <f6>
+;;;    <f7>
+;;;    <f8>
+;;;    <f9>
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
 
