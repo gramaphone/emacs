@@ -71,6 +71,39 @@
       (while (re-search-forward "^\*\* DONE" nil t)
 	(replace-match "** TODO" nil nil)))))
 
+(defun show-context (context)
+  "Shows the subtree for a particular context in my gtd.org file."
+  (save-excursion
+    (goto-char (point-min))
+    (re-search-forward (concat "^\* " context) nil t)
+    (show-subtree)))
+
+(defun hide-all-contexts ()
+  "Hides all the contexts in my gtd.org file."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "^\* " nil t)
+      (hide-subtree))))
+
+(defun show-these-contexts (&rest contexts)
+  "Shows just these contexts in my gtd.org file."
+  (hide-all-contexts)
+  (mapc 'show-context contexts))
+
+(defun work ()
+  "Opens just the contexts I need when I'm at work."
+  (interactive)
+  (show-these-contexts
+   "Daily checklist"
+   "Anywhere"
+   "Computer"
+   "Computer - Internet - Work"
+   "Work"
+   "Waiting for"
+   "Projects - Work"))
+
+
 ;;; Feel free to define these keys however you like--the keybinding conventions
 ;;; promise that you will not clobber anything:
 ;;;    C-c <upper-case-letter>
@@ -80,6 +113,7 @@
 ;;;    <f7>
 ;;;    <f8>
 ;;;    <f9>
+(global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
 
