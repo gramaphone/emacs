@@ -9,7 +9,7 @@
 (setq inhibit-splash-screen t)          ; oh god, just cut it out
 (setq initial-scratch-message ";; Customized!\n\n")	; my comment in the scratch buffer
 (setq echo-keystrokes 0.1)		; see what you are typing as you type it
-;;;;;(setq scroll-conservatively 1)		; no jump-scrolling
+(setq scroll-conservatively 1)		; no jump-scrolling
 (setq scroll-margin 2)			; cursor this many lines away from edges
 (blink-cursor-mode 0)			; turn off cursor blink
 (scroll-bar-mode 0)			; turn off scroll bars
@@ -25,10 +25,6 @@
 ;;; make the mode line fancy
 ;;;;;(size-indication-mode)			; show how big this buffer is
 (setq display-time-default-load-average nil) ; don't show the load average
-
-;;; no menu bar in terminal windows
-(if (not (display-graphic-p))
-    (menu-bar-mode -1))
 
 ;;; tail
 (defun tail ()
@@ -49,10 +45,10 @@
 ;;; LaTeX mode
 (add-hook 'latex-mode-hook 'visual-line-mode) ; wrap long lines
 
-;;; Marmalade
+;;; packages
 (require 'package)
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+	     '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 ;;; themes
