@@ -17,6 +17,10 @@
 (menu-bar-mode 0)			; turn off menu bars
 (setq visible-bell t)			; no beeping
 
+;;; battery
+(display-battery-mode 1)
+(setq battery-update-interval 10)
+
 
 ;;; correct backspace on terminals
 (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -37,9 +41,6 @@
 ;;; Org mode
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
 (setq org-startup-indented t)		    ; hide leading asterisks
-(if (not (display-graphic-p))
-    (add-to-list 'default-frame-alist '(background-color . "black")))
-					; so that the color of leading asterisks is less prominent
 (add-hook 'org-mode-hook 'flyspell-mode)
 
 ;;; LaTeX mode
@@ -48,12 +49,15 @@
 ;;; packages
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
+	     '("melpa-archive" . "https://elpa.zilongshanren.com/melpa/"))
+;;;;;	     '("melpa" . "http://melpa.org/packages/"))
+;;;;;	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;;; themes
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;;;;;(load-theme 'zenburn t)
+(if (display-graphic-p)
+    (load-theme 'zenburn t))
 
 ;;; gtd.org
 (defun reset-checklist ()
@@ -128,6 +132,9 @@
 (global-set-key (kbd "<XF86AudioNext>") 'emms-next)
 (global-set-key (kbd "<XF86AudioPrev>") 'emms-previous)
 
+;;; Evil
+(require 'evil)
+(evil-mode 1)
 
 ;;; Helm
 (require 'helm)
@@ -179,9 +186,3 @@
    (quote
     ("06b2849748590f7f991bf0aaaea96611bb3a6982cad8b1e3fc707055b96d64ca" default)))
  '(newsticker-url-list nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
