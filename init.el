@@ -49,8 +49,8 @@
 ;;; packages
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa-archive" . "https://elpa.zilongshanren.com/melpa/"))
-;;;;;	     '("melpa" . "http://melpa.org/packages/"))
+;;;;; '("melpa-archive" . "https://elpa.zilongshanren.com/melpa/"))
+	     '("melpa" . "http://melpa.org/packages/"))
 ;;;;;	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
@@ -135,6 +135,10 @@
 ;;; Evil
 (require 'evil)
 (evil-mode 1)
+
+;;; Yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
 
 ;;; Helm
 (require 'helm)
