@@ -1,5 +1,5 @@
 ;;;
-;;; Gnu Emacs Startup File
+;;; Emacs Startup File
 ;;;
 
 ;;; Miscellaneous options
@@ -20,7 +20,6 @@
 ;;; battery
 (display-battery-mode 1)
 (setq battery-update-interval 10)
-
 
 ;;; correct backspace on terminals
 (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -136,10 +135,6 @@
 (require 'evil)
 (evil-mode 1)
 
-;;; Yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-
 ;;; Helm
 (require 'helm)
 (require 'helm-config)
@@ -175,6 +170,11 @@
 
 ;;; server
 (server-start)
+
+
+;;; MH-E
+(setq mh-compose-prompt-flag nil	; no prompt for To: and Subject:
+      mh-insert-x-mailer-flag nil)	; no bragging, please
 
 
 ;;;-----------------------------------------------------------------------------
