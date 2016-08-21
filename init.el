@@ -65,12 +65,10 @@
   (save-excursion
     (save-restriction
       (goto-char (point-min))
-      (narrow-to-region
-       (re-search-forward "^\* " nil t)	 ; start of checklist
-       (re-search-forward "^\* " nil t)) ; first context after checklist
+      (org-narrow-to-subtree)
+      (if (re-search-forward "^\* DONE" nil t)	; find the top-level "DONE" for the whole checklist
+	  (replace-match "* TODO" nil nil))
       (goto-char (point-min))
-      (re-search-forward "^DONE" nil t)	; find the top-level "DONE" for the whole checklist
-      (replace-match "TODO" nil nil)
       (while (re-search-forward "^\*\* DONE" nil t)
 	(replace-match "** TODO" nil nil)))))
 
@@ -132,8 +130,8 @@
 (global-set-key (kbd "<XF86AudioPrev>") 'emms-previous)
 
 ;;; Evil
-(require 'evil)
-(evil-mode 1)
+;(require 'evil)
+;(evil-mode 1)
 
 ;;; Helm
 (require 'helm)
