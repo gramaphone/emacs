@@ -114,6 +114,7 @@
 ;;;    <f7>
 ;;;    <f8>
 ;;;    <f9>
+(global-set-key (kbd "<f5>") 'emms-playlist-mode-go)
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
