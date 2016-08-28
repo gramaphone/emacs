@@ -105,6 +105,26 @@
    "Projects - Work"))
 
 
+;;; EMMS -- media playback
+(add-to-list 'load-path "~/.emacs.d/emms/lisp")
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+(setq emms-source-file-default-directory "~/Music/")
+(setq emms-playlist-buffer-name "*Music*")
+(global-set-key (kbd "<XF86AudioStop>") 'emms-stop)
+(global-set-key (kbd "<XF86AudioPlay>") 'emms-pause)
+(global-set-key (kbd "<XF86AudioNext>") 'emms-next)
+(global-set-key (kbd "<XF86AudioPrev>") 'emms-previous)
+
+(defun load-music ()
+  "Load up my playlist (if necessary) and switch to the playlist buffer."
+  (interactive)
+  (if (not (get-buffer emms-playlist-buffer-name))
+      (emms-add-directory-tree emms-source-file-default-directory))
+  (emms-playlist-mode-go))
+      
+
 ;;; Feel free to define these keys however you like--the keybinding conventions
 ;;; promise that you will not clobber anything:
 ;;;    C-c <upper-case-letter>
@@ -114,21 +134,10 @@
 ;;;    <f7>
 ;;;    <f8>
 ;;;    <f9>
-(global-set-key (kbd "<f5>") 'emms-playlist-mode-go)
+(global-set-key (kbd "<f5>") 'load-music)
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
-
-;;; EMMS -- media playback
-(add-to-list 'load-path "~/.emacs.d/emms/lisp")
-(require 'emms-setup)
-(emms-all)
-(emms-default-players)
-(setq emms-source-file-default-directory "~/Music/")
-(global-set-key (kbd "<XF86AudioStop>") 'emms-stop)
-(global-set-key (kbd "<XF86AudioPlay>") 'emms-pause)
-(global-set-key (kbd "<XF86AudioNext>") 'emms-next)
-(global-set-key (kbd "<XF86AudioPrev>") 'emms-previous)
 
 ;;; Evil
 ;(require 'evil)
@@ -172,8 +181,8 @@
 
 
 ;;; MH-E
-(setq mh-compose-prompt-flag nil	; no prompt for To: and Subject:
-      mh-insert-x-mailer-flag nil)	; no bragging, please
+;;;;;(setq mh-compose-prompt-flag nil	; no prompt for To: and Subject:
+;;;;;      mh-insert-x-mailer-flag nil)	; no bragging, please
 
 
 ;;;-----------------------------------------------------------------------------
