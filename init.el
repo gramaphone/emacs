@@ -21,10 +21,6 @@
 (display-battery-mode 1)
 (setq battery-update-interval 10)
 
-;;; correct backspace on terminals
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "C-x h") 'help-command)
-
 ;;; make the mode line fancy
 ;;;;;(size-indication-mode)			; show how big this buffer is
 (setq display-time-default-load-average nil) ; don't show the load average
@@ -139,10 +135,6 @@
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
 
-;;; Evil
-;(require 'evil)
-;(evil-mode 1)
-
 ;;; Helm
 (require 'helm)
 (require 'helm-config)
@@ -175,14 +167,6 @@
 (global-set-key (kbd "C-c h g") 'helm-google-suggest)
 (global-set-key (kbd "C-c h M-:") 'helm-eval-expression-with-eldoc)
 
-
-;;; server
-(server-start)
-
-
-;;; MH-E
-;;;;;(setq mh-compose-prompt-flag nil	; no prompt for To: and Subject:
-;;;;;      mh-insert-x-mailer-flag nil)	; no bragging, please
 
 
 ;;;-----------------------------------------------------------------------------
