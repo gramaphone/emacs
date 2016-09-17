@@ -101,6 +101,10 @@
    "Projects - Work"))
 
 
+;;; MH-E -- mail
+(setq mh-inc-prog "/home/dan/bin/finc")
+
+
 ;;; EMMS -- media playback
 (add-to-list 'load-path "~/.emacs.d/emms/lisp")
 (require 'emms-setup)
@@ -131,6 +135,7 @@
 ;;;    <f8>
 ;;;    <f9>
 (global-set-key (kbd "<f5>") 'load-music)
+(global-set-key (kbd "<f6>") 'mh-rmail)
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
