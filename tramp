@@ -1,0 +1,8 @@
+;; -*- emacs-lisp -*- <16/10/01 09:56:23 /home/dan/.emacs.d/tramp>
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+((["scp" "vots_dan" "danpuckett.org" nil nil]
+  nil)
+ (["ftp" "vots_dan" "danpuckett.org" nil nil]
+  ("started" t)))
