@@ -13,11 +13,9 @@
 
 (if (display-graphic-p)
     (progn
-      (setq echo-keystrokes 0.1)		; see what you are typing as you type it
-      (setq scroll-conservatively 1)		; no jump-scrolling
-      (setq scroll-margin 2)			; cursor this many lines away from edges
-      (blink-cursor-mode 0)			; turn off cursor blink
-      (scroll-bar-mode 0)			; turn off scroll bars
+      (setq echo-keystrokes 0.1)	; see what you are typing as you type it
+      (blink-cursor-mode 0)		; turn off cursor blink
+      (scroll-bar-mode 0)		; turn off scroll bars
       (tool-bar-mode 0)			; turn off tool bars
       ))
 
@@ -26,7 +24,6 @@
 (setq battery-update-interval 10)
 
 ;;; make the mode line fancy
-;;;;;(size-indication-mode)			; show how big this buffer is
 (setq display-time-default-load-average nil) ; don't show the load average
 
 ;;; tail
@@ -43,6 +40,13 @@
     (setq org-startup-indented t))	; hide leading asterisks
 (setq org-use-speed-commands t)	        ; single-letter commands at beginning of a headline
 (add-hook 'org-mode-hook 'flyspell-mode)
+(setq org-publish-project-alist
+      '(("danpuckett.org"
+	 :base-directory "~/Documents/website/org/"
+	 :publishing-directory  "~/Documents/website/public_html/"
+	 :publishing-function org-html-publish-to-html
+	 :section-numbers nil
+	 :with-toc nil)))
 
 ;;; LaTeX mode
 (add-hook 'latex-mode-hook 'visual-line-mode) ; wrap long lines
