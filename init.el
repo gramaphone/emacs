@@ -10,14 +10,23 @@
 (setq initial-scratch-message ";; Customized!\n\n")	; my comment in the scratch buffer
 (menu-bar-mode 0)			; turn off menu bars
 (setq visible-bell t)			; no beeping
+(setq view-read-only t)			; read-only files should use view-mode by default
+(setq echo-keystrokes 0.1)              ; see what you are typing as you type it
 
 (if (display-graphic-p)
     (progn
-      (setq echo-keystrokes 0.1)	; see what you are typing as you type it
       (blink-cursor-mode 0)		; turn off cursor blink
       (scroll-bar-mode 0)		; turn off scroll bars
       (tool-bar-mode 0)			; turn off tool bars
       ))
+
+;;; get the files that I always like to have loaded
+;;; note that the last file in this list is the buffer I see on startup
+(mapc 'find-file
+      '("~/projects/current/"
+	"~/Documents/"
+	"~/.emacs.d/init.el"
+	"~/Documents/gtd.org"))      
 
 ;;; battery
 (display-battery-mode 1)
@@ -47,6 +56,10 @@
 	 :publishing-function org-html-publish-to-html
 	 :section-numbers nil
 	 :with-toc nil)))
+(setq org-html-preamble nil)
+(setq org-html-postamble nil)
+(setq org-html-head-include-default-style nil)
+(setq org-html-head-include-scripts nil)
 
 ;;; LaTeX mode
 (add-hook 'latex-mode-hook 'visual-line-mode) ; wrap long lines
@@ -149,39 +162,6 @@
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
-
-; ;;; Helm
-; (require 'helm)
-; (require 'helm-config)
-; 
-; ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-; ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-; ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-; (global-set-key (kbd "C-c h") 'helm-command-prefix)
-; (global-unset-key (kbd "C-x c"))
-; 
-; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-; (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-; 
-; (when (executable-find "curl")
-;   (setq helm-google-suggest-use-curl-p t))
-; 
-; (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-;       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-;       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-;       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-;       helm-ff-file-name-history-use-recentf t)
-; 
-; (helm-mode 1)
-; 
-; (global-set-key (kbd "M-x") 'helm-M-x)
-; (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-; (global-set-key (kbd "C-x b") 'helm-mini)
-; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-; (global-set-key (kbd "C-c h g") 'helm-google-suggest)
-; (global-set-key (kbd "C-c h M-:") 'helm-eval-expression-with-eldoc)
-; 
 
 
 ;;;-----------------------------------------------------------------------------
