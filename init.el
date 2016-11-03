@@ -193,7 +193,7 @@
 	))      
 (switch-to-buffer "*scratch*")
 (three-window-setup)
-(other-window -1) 			; gtd.org in right window
+(other-window -1) 			; gtd.org in left window
 (work)
 (other-window -1)			; log.org in bottom window
 (end-of-buffer)
