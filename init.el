@@ -2,6 +2,9 @@
 ;;; Emacs Startup File
 ;;;
 
+;;;(setq default-frame-alist
+;;;      (cons (cons 'reverse t) default-frame-alist)) ; equivalent of --reverse-video flag on the command line
+
 ;;; Miscellaneous options
 (setq require-final-newline t)	        ; assures the newline at eof
 (setq make-backup-files nil)		; no backup copies of files
@@ -19,14 +22,6 @@
       (scroll-bar-mode 0)		; turn off scroll bars
       (tool-bar-mode 0)			; turn off tool bars
       ))
-
-;;; get the files that I always like to have loaded
-;;; note that the last file in this list is the buffer I see on startup
-(mapc 'find-file
-      '("~/projects/current/"
-	"~/Documents/"
-	"~/.emacs.d/init.el"
-	"~/Documents/gtd.org"))      
 
 ;;; battery
 (display-battery-mode 1)
@@ -66,16 +61,26 @@
 
 ;;; packages
 (require 'package)
-(add-to-list 'package-archives
-;;;;; '("melpa-archive" . "https://elpa.zilongshanren.com/melpa/"))
-	     '("melpa" . "http://melpa.org/packages/"))
-;;;;;	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;;; themes
+;;; set up colors
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(if (display-graphic-p)
-    (load-theme 'zenburn t))
+;;;
+;;; This is messed up, but here's the deal.  The ONLY reasonable way to get the nice
+;;; high-contrast inverse-video mode that really works correctly with Org mode, etc., is
+;;; by setting the following resource in .Xresources:
+;;;
+;;;     emacs.reverseVideo:	true
+;;;
+;;; I can't configure this within my init.el?  Nope.  Holy pants.
+;;;
+
+;;; And here's zenburn, in case you want low-contrast for some reason:
+;;;(if (display-graphic-p)
+;;;    (load-theme 'zenburn t))
+
 
 ;;; gtd.org
 (defun reset-checklist ()
@@ -146,7 +151,19 @@
   (if (not (get-buffer emms-playlist-buffer-name))
       (emms-add-directory-tree emms-source-file-default-directory))
   (emms-playlist-mode-go))
-      
+
+
+(defun three-window-setup ()
+  "Sets up the current frame into three frames, proportioned the way I like them."
+  (interactive)
+  (delete-other-windows)
+  (split-window-below -7)
+  (split-window-right)
+  (switch-to-buffer "gtd.org")
+  (other-window 2)
+  (switch-to-buffer "log.org")
+  (other-window -1))
+
 
 ;;; Feel free to define these keys however you like--the keybinding conventions
 ;;; promise that you will not clobber anything:
@@ -159,8 +176,31 @@
 ;;;    <f9>
 (global-set-key (kbd "<f5>") 'load-music)
 (global-set-key (kbd "<f6>") 'mh-rmail)
+(global-set-key (kbd "<f7>") 'three-window-setup)
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
+
+
+;;; load the files and directories that I always like to have loaded
+;;; and set up the windows in the configuration I like to see
+(mapc 'find-file
+      '(
+	"~/projects/current/"
+	"~/Documents/"
+	"~/.emacs.d/init.el"
+	"~/Documents/gtd.org"
+	"~/Documents/log.org"
+	))      
+(switch-to-buffer "*scratch*")
+(three-window-setup)
+(other-window -1) 			; gtd.org in right window
+(work)
+(other-window -1)			; log.org in bottom window
+(end-of-buffer)
+
+;;; org-drill
+(add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20161017/")
+(require 'org-drill)
 
 
 
