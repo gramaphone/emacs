@@ -82,6 +82,11 @@
 ;;;    (load-theme 'zenburn t))
 
 
+
+;;; avy - a nicer "ace-jump-mode"
+(avy-setup-default)
+(global-set-key (kbd "C-:") 'avy-goto-char-timer)
+
 ;;; gtd.org
 (defun reset-checklist ()
   "Resets the top checklist items in my gtd.org file."
@@ -175,7 +180,7 @@
 ;;;    <f8>
 ;;;    <f9>
 (global-set-key (kbd "<f5>") 'load-music)
-(global-set-key (kbd "<f6>") 'mh-rmail)
+
 (global-set-key (kbd "<f7>") 'three-window-setup)
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
