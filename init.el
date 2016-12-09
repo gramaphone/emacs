@@ -158,18 +158,6 @@
   (emms-playlist-mode-go))
 
 
-(defun three-window-setup ()
-  "Sets up the current frame into three frames, proportioned the way I like them."
-  (interactive)
-  (delete-other-windows)
-  (split-window-below -7)
-  (split-window-right)
-  (switch-to-buffer "gtd.org")
-  (other-window 2)
-  (switch-to-buffer "log.org")
-  (other-window -1))
-
-
 ;;; Feel free to define these keys however you like--the keybinding conventions
 ;;; promise that you will not clobber anything:
 ;;;    C-c <upper-case-letter>
@@ -180,28 +168,22 @@
 ;;;    <f8>
 ;;;    <f9>
 (global-set-key (kbd "<f5>") 'load-music)
-
-(global-set-key (kbd "<f7>") 'three-window-setup)
 (global-set-key (kbd "<f8>") 'work)
 (global-set-key (kbd "<f9>") 'reset-checklist)
 
 
 ;;; load the files and directories that I always like to have loaded
 ;;; and set up the windows in the configuration I like to see
+;;;
+;;; last buffer in this list is the one shown on startup
 (mapc 'find-file
       '(
 	"~/projects/current/"
 	"~/Documents/"
 	"~/.emacs.d/init.el"
 	"~/Documents/gtd.org"
-	"~/Documents/log.org"
-	))      
-(switch-to-buffer "*scratch*")
-(three-window-setup)
-(other-window -1) 			; gtd.org in left window
+	))
 (work)
-(other-window -1)			; log.org in bottom window
-(end-of-buffer)
 
 ;;; org-drill
 (add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20161017/")
