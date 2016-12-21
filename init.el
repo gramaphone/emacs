@@ -106,7 +106,9 @@
   (save-excursion
     (goto-char (point-min))
     (re-search-forward (concat "^\* " context) nil t)
-    (show-subtree)))
+    (if (equal context "Daily checklist")
+	(org-cycle)
+      (show-subtree))))
 
 (defun hide-all-contexts ()
   "Hides all the contexts in my gtd.org file."
