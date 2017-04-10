@@ -23,6 +23,9 @@
       (tool-bar-mode 0)			; turn off tool bars
       ))
 
+;;; need this to make /usr/bin/emacsclient work
+(server-start)
+
 ;;; battery
 (display-battery-mode 1)
 (setq battery-update-interval 10)
@@ -105,7 +108,7 @@
   "Shows the subtree for a particular context in my gtd.org file."
   (save-excursion
     (goto-char (point-min))
-    (re-search-forward (concat "^\* " context) nil t)
+    (re-search-forward (concat "^\* " context) nil t) ; bug here -- never matches "Daily checklist" because, unlike with other contexts, the line also includes a "DONE " or "TODO "
     (if (equal context "Daily checklist")
 	(org-cycle)
       (show-subtree))))
@@ -134,6 +137,16 @@
    "Work"
    "Waiting for"
    "Projects - Work"))
+
+;;; Navigate my GTD file
+(defun move-to-top-daily-todo ()
+  "Moves the cursor to the first item flagged as 'TODO' in the daily checklist."
+  (interactive)
+  (goto-char (point-min))
+  (org-narrow-to-subtree)
+  (re-search-forward "^\\*\\* TODO" nil t)
+  (move-beginning-of-line nil)
+  (widen))
 
 
 ;;; MH-E -- mail
@@ -169,9 +182,10 @@
 ;;;    <f7>
 ;;;    <f8>
 ;;;    <f9>
-(global-set-key (kbd "<f5>") 'load-music)
-(global-set-key (kbd "<f8>") 'work)
-(global-set-key (kbd "<f9>") 'reset-checklist)
+(global-set-key (kbd "<f5>")  'load-music)
+(global-set-key (kbd "<f8>")  'work)
+(global-set-key (kbd "<f9>")  'reset-checklist)
+(global-set-key (kbd "C-c t") 'move-to-top-daily-todo)
 
 
 ;;; load the files and directories that I always like to have loaded
@@ -192,8 +206,8 @@
 (require 'org-drill)
 
 ;;; Vi emulation
-(require 'evil)
-(evil-mode 1)
+;(require 'evil)
+;(evil-mode 1)
 
 
 ;;;-----------------------------------------------------------------------------
