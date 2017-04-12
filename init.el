@@ -98,17 +98,17 @@
     (save-restriction
       (goto-char (point-min))
       (org-narrow-to-subtree)
-      (if (re-search-forward "^\* DONE" nil t)	; find the top-level "DONE" for the whole checklist
+      (if (re-search-forward "^\\* DONE" nil t)	; find the top-level "DONE" for the whole checklist
 	  (replace-match "* TODO" nil nil))
       (goto-char (point-min))
-      (while (re-search-forward "^\*\* DONE" nil t)
+      (while (re-search-forward "^\\*\\* DONE" nil t)
 	(replace-match "** TODO" nil nil)))))
 
 (defun show-context (context)
   "Shows the subtree for a particular context in my gtd.org file."
   (save-excursion
     (goto-char (point-min))
-    (re-search-forward (concat "^\* " context) nil t) ; bug here -- never matches "Daily checklist" because, unlike with other contexts, the line also includes a "DONE " or "TODO "
+    (re-search-forward (concat "^\\* " context) nil t) ; bug here -- never matches "Daily checklist" because, unlike with other contexts, the line also includes a "DONE " or "TODO "
     (if (equal context "Daily checklist")
 	(org-cycle)
       (show-subtree))))
@@ -118,7 +118,7 @@
   (interactive)
   (save-excursion
     (goto-char (point-min))
-    (while (re-search-forward "^\* " nil t)
+    (while (re-search-forward "^\\* " nil t)
       (hide-subtree))))
 
 (defun show-these-contexts (&rest contexts)
