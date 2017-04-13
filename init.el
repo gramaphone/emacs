@@ -149,6 +149,24 @@
   (widen))
 
 
+
+;;; Move a line to the "Waiting for" context
+(defun move-to-waiting-for ()
+  "Moves the current line to the 'Waiting for' context and adds today's date."
+  (interactive)
+  (move-beginning-of-line nil)
+  (kill-line 1)
+  (goto-char (point-min))
+  (re-search-forward "^\\* Waiting for" nil nil)
+  (outline-forward-same-level 1)
+  (yank)
+  (previous-line)
+  (move-beginning-of-line nil)
+  (re-search-forward "^\\*\\* " nil nil)
+  (insert (format-time-string "%-m/%-d - "))
+  (left-char 3))
+
+
 ;;; MH-E -- mail
 (setq mh-inc-prog "/home/dan/bin/finc")
 
@@ -186,6 +204,7 @@
 (global-set-key (kbd "<f8>")  'work)
 (global-set-key (kbd "<f9>")  'reset-checklist)
 (global-set-key (kbd "C-c t") 'move-to-top-daily-todo)
+(global-set-key (kbd "C-c w") 'move-to-waiting-for)
 
 
 ;;; load the files and directories that I always like to have loaded
