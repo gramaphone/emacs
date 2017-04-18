@@ -121,22 +121,30 @@
     (while (re-search-forward "^\\* " nil t)
       (hide-subtree))))
 
-(defun show-these-contexts (&rest contexts)
+(defun show-these-contexts (contexts)
   "Shows just these contexts in my gtd.org file."
   (hide-all-contexts)
   (mapc 'show-context contexts))
 
+(defun what-work-contexts-to-see ()
+  "Returns a list of contexts that I want to view at work."
+  (let ((contexts '("Anywhere"
+		    "Computer"
+		    "Computer - Internet - Work"
+		    "Work"
+		    "Waiting for"
+		    "Projects - Work")))
+    (save-excursion
+      (goto-char (point-min))
+      (if (re-search-forward "^\\* DONE Daily checklist" nil t)
+	  contexts
+	(cons "Daily checklist" contexts)))))
+  
 (defun work ()
   "Opens just the contexts I need when I'm at work."
   (interactive)
-  (show-these-contexts
-   "Daily checklist"
-   "Anywhere"
-   "Computer"
-   "Computer - Internet - Work"
-   "Work"
-   "Waiting for"
-   "Projects - Work"))
+  (show-these-contexts (what-work-contexts-to-see)))
+
 
 ;;; Navigate my GTD file
 (defun move-to-top-daily-todo ()
@@ -147,7 +155,6 @@
   (re-search-forward "^\\*\\* TODO" nil t)
   (move-beginning-of-line nil)
   (widen))
-
 
 
 ;;; Move a line to the "Waiting for" context
