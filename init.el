@@ -10,7 +10,7 @@
 (setq make-backup-files nil)		; no backup copies of files
 (setq colon-double-space t)		; two spaces after each colon
 (setq inhibit-splash-screen t)          ; oh god, just cut it out
-(setq initial-scratch-message ";; Customized!\n\n")	; my comment in the scratch buffer
+(setq initial-scratch-message nil)	; no comment in the scratch buffer
 (menu-bar-mode 0)			; turn off menu bars
 (setq visible-bell t)			; no beeping
 (setq view-read-only t)			; read-only files should use view-mode by default
