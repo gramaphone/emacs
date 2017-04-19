@@ -108,7 +108,7 @@
   "Shows the subtree for a particular context in my gtd.org file."
   (save-excursion
     (goto-char (point-min))
-    (re-search-forward (concat "^\\* " context) nil t) ; bug here -- never matches "Daily checklist" because, unlike with other contexts, the line also includes a "DONE " or "TODO "
+    (re-search-forward (concat "^\\* \\(TODO \\|DONE \\)?" context) nil t)
     (if (equal context "Daily checklist")
 	(org-cycle)
       (show-subtree))))
