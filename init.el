@@ -2,9 +2,6 @@
 ;;; Emacs Startup File
 ;;;
 
-;;;(setq default-frame-alist
-;;;      (cons (cons 'reverse t) default-frame-alist)) ; equivalent of --reverse-video flag on the command line
-
 ;;; Miscellaneous options
 (setq require-final-newline t)	        ; assures the newline at eof
 (setq make-backup-files nil)		; no backup copies of files
@@ -15,6 +12,7 @@
 (setq visible-bell t)			; no beeping
 (setq view-read-only t)			; read-only files should use view-mode by default
 (setq echo-keystrokes 0.1)              ; see what you are typing as you type it
+(setq display-time-default-load-average nil) ; don't show the load average
 
 (if (display-graphic-p)
     (progn
@@ -29,9 +27,6 @@
 ;;; battery
 (display-battery-mode 1)
 (setq battery-update-interval 10)
-
-;;; make the mode line fancy
-(setq display-time-default-load-average nil) ; don't show the load average
 
 ;;; tail
 (defun tail ()
