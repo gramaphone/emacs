@@ -28,14 +28,6 @@
 (display-battery-mode 1)
 (setq battery-update-interval 10)
 
-;;; tail
-(defun tail ()
-  "Prompts for a file name, then displays a tail of that file."
-  (interactive)
-  (find-file (read-file-name "Tail: "))
-  (auto-revert-tail-mode)
-  (end-of-buffer))
-
 ;;; Org mode
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
 (if (display-graphic-p)
