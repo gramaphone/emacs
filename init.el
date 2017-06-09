@@ -214,13 +214,6 @@
 	))
 (work)
 
-;;; org-drill
-(add-to-list 'load-path "~/.emacs.d/elpa/org-plus-contrib-20161017/")
-(require 'org-drill)
-
-;;; Vi emulation
-;(require 'evil)
-;(evil-mode 1)
 
 
 ;;;-----------------------------------------------------------------------------
