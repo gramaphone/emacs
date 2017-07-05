@@ -95,7 +95,8 @@
   "Shows the subtree for a particular context in my gtd.org file."
   (save-excursion
     (goto-char (point-min))
-    (re-search-forward (concat "^\\* \\(TODO \\|DONE \\)?" context) nil t)
+    (if (not (re-search-forward (concat "^\\* \\(TODO \\|DONE \\)?" context) nil t))
+	(error "Can't find context '%s'.  Update init.el or gtd.org to reconcile them." context))
     (if (equal context "Daily checklist")
 	(org-cycle)
       (show-subtree))))
@@ -117,7 +118,6 @@
   "Returns a list of contexts that I want to view at work."
   (let ((contexts '("Anywhere"
 		    "Computer"
-		    "Computer - Internet - Work"
 		    "Work"
 		    "Waiting for"
 		    "Projects - Work")))
