@@ -12,7 +12,6 @@
 (setq visible-bell t)			; no beeping
 (setq view-read-only t)			; read-only files should use view-mode by default
 (setq echo-keystrokes 0.1)              ; see what you are typing as you type it
-(setq display-time-default-load-average nil) ; don't show the load average
 
 (if (display-graphic-p)
     (progn
@@ -30,9 +29,9 @@
 
 ;;; Org mode
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
-(if (display-graphic-p)
-    (setq org-startup-indented t))	; hide leading asterisks
-(setq org-use-speed-commands t)	        ; single-letter commands at beginning of a headline
+(setq org-startup-indented t)		    ; get the spacing correct
+(setq org-hide-leading-stars t)		    ; hide leading asterisks
+(setq org-use-speed-commands t)	            ; single-letter commands at beginning of a headline
 (add-hook 'org-mode-hook 'flyspell-mode)
 (setq org-publish-project-alist
       '(("danpuckett.org"
@@ -199,6 +198,19 @@
 (global-set-key (kbd "<f9>")  'reset-checklist)
 (global-set-key (kbd "C-c t") 'move-to-top-daily-todo)
 (global-set-key (kbd "C-c w") 'move-to-waiting-for)
+
+
+;;; This section must come before the find-file commands I
+;;; run below, otherwise the files will already have their
+;;; formatting set in place before I can configure the hidden
+;;; stars to be black.
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-hide ((t (:foreground "black")))))
+
 
 
 ;;; load the files and directories that I always like to have loaded
