@@ -48,6 +48,12 @@
 ;;; LaTeX mode
 (add-hook 'latex-mode-hook 'visual-line-mode) ; wrap long lines
 
+
+;;; SLIME
+(setq inferior-lisp-program "/usr/bin/sbcl"
+      slime-contribs '(slime-fancy)
+      common-lisp-hyperspec-root "/usr/share/doc/hyperspec/") ; "C-c C-d h" to look things up
+
 ;;; packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -160,8 +166,17 @@
   (left-char 3))
 
 
+;;; Suppress prompts
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function
+	    kill-buffer-query-functions))
+
+
 ;;; MH-E -- mail
 (setq mh-inc-prog "/home/dan/bin/finc")
+(setq mh-do-not-confirm-flag t)
 
 
 ;;; EMMS -- media playback
