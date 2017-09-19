@@ -123,6 +123,7 @@
   "Returns a list of contexts that I want to view at work."
   (let ((contexts '("Anywhere"
 		    "Computer"
+		    "Computer - Internet"
 		    "Work"
 		    "Waiting for"
 		    "Projects - Work")))
