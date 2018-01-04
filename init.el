@@ -184,7 +184,7 @@
 (add-to-list 'load-path "~/.emacs.d/emms/lisp")
 (require 'emms-setup)
 (emms-all)
-(emms-default-players)
+(setq emms-player-list '(emms-player-vlc emms-player-vlc-playlist))
 (setq emms-source-file-default-directory "~/Music/")
 (setq emms-playlist-buffer-name "*Music*")
 (global-set-key (kbd "<XF86AudioStop>") 'emms-stop)
