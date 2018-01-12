@@ -216,6 +216,11 @@
 (global-set-key (kbd "C-c w") 'move-to-waiting-for)
 
 
+;;; C-z calls suspend-frame, which I never, ever want to do.
+;;; I'm tired of pressing this key by accident.
+(global-unset-key (kbd "C-z"))
+
+
 ;;; This section must come before the find-file commands I
 ;;; run below, otherwise the files will already have their
 ;;; formatting set in place before I can configure the hidden
