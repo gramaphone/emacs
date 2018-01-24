@@ -235,6 +235,10 @@
 (global-unset-key (kbd "C-z"))
 
 
+;;; Magit!  Show thyself!
+(global-set-key (kbd "C-x g") 'magit-status)
+
+
 ;;; This section must come before the find-file commands I
 ;;; run below, otherwise the files will already have their
 ;;; formatting set in place before I can configure the hidden
