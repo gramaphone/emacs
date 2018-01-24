@@ -167,6 +167,18 @@
   (left-char 3))
 
 
+;;; Adds a new item to the current context
+(defun add-new-item ()
+  "Adds a new item to the current context, pushing a mark first so you can navigate back where you were before."
+  (interactive)
+  (push-mark)
+  (outline-up-heading 1)
+  (outline-forward-same-level 1)
+  (previous-line)
+  (org-end-of-line)
+  (org-meta-return))
+
+
 ;;; Suppress prompts
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
@@ -212,8 +224,10 @@
 (global-set-key (kbd "<f5>")  'load-music)
 (global-set-key (kbd "<f8>")  'work)
 (global-set-key (kbd "<f9>")  'reset-checklist)
+(global-set-key (kbd "C-c n") 'add-new-item)
 (global-set-key (kbd "C-c t") 'move-to-top-daily-todo)
 (global-set-key (kbd "C-c w") 'move-to-waiting-for)
+
 
 
 ;;; C-z calls suspend-frame, which I never, ever want to do.
