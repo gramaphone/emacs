@@ -20,12 +20,21 @@
       (tool-bar-mode 0)			; turn off tool bars
       ))
 
+
 ;;; need this to make /usr/bin/emacsclient work
 (server-start)
+
 
 ;;; battery
 (display-battery-mode 1)
 (setq battery-update-interval 10)
+
+
+;;; SLIME
+(setq inferior-lisp-program "/usr/bin/sbcl"
+      slime-contribs '(slime-fancy)
+      common-lisp-hyperspec-root "/usr/share/doc/hyperspec/") ; "C-c C-d h" to look things up
+
 
 ;;; Org mode
 (add-hook 'org-mode-hook 'visual-line-mode) ; wrap long lines
