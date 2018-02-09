@@ -12,6 +12,7 @@
 (setq visible-bell t)			; no beeping
 (setq view-read-only t)			; read-only files should use view-mode by default
 (setq echo-keystrokes 0.1)              ; see what you are typing as you type it
+(electric-pair-mode)			; keep your parentheses balanced
 
 (if (display-graphic-p)
     (progn
