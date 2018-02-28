@@ -31,10 +31,10 @@
 (setq battery-update-interval 10)
 
 
-;;; SLIME
-(setq inferior-lisp-program "/usr/bin/sbcl"
-      slime-contribs '(slime-fancy)
-      common-lisp-hyperspec-root "/usr/share/doc/hyperspec/") ; "C-c C-d h" to look things up
+;;; TidalCycles
+(add-to-list 'load-path "~/.emacs.d/tidal")
+(require 'haskell-mode)
+(require 'tidal)
 
 
 ;;; Org mode
@@ -63,6 +63,7 @@
 (setq inferior-lisp-program "/usr/bin/sbcl"
       slime-contribs '(slime-fancy)
       common-lisp-hyperspec-root "/usr/share/doc/hyperspec/") ; "C-c C-d h" to look things up
+
 
 ;;; packages
 (require 'package)
@@ -131,7 +132,7 @@
 
 (defun what-work-contexts-to-see ()
   "Returns a list of contexts that I want to view at work."
-  (let ((contexts '("Work"
+  (let ((contexts '("Next actions"
 		    "Waiting for"
 		    "Projects - Work")))
     (save-excursion
