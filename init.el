@@ -187,6 +187,12 @@
   (org-meta-return))
 
 
+;;; Convert ORG files to a prettier format, so I can send them by e-mail
+(defun prettify-org-file ()
+  (interactive)
+  (message "Hello, world."))
+
+
 ;;; Suppress prompts
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
