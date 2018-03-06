@@ -175,12 +175,14 @@
   (left-char 3))
 
 
-;;; Adds a new item to the current context
+;;; Adds a new item to the "Next actions" context
 (defun add-new-item ()
-  "Adds a new item to the current context, pushing a mark first so you can navigate back where you were before."
+  "Adds a new item to the 'Next actions' context, pushing a mark first so you can navigate back where you were before."
   (interactive)
+  (work)
   (push-mark)
-  (outline-up-heading 1)
+  (goto-char (point-min))
+  (re-search-forward "^\\* Next actions")
   (outline-forward-same-level 1)
   (previous-line)
   (org-end-of-line)
