@@ -162,11 +162,10 @@
 (defun move-to-waiting-for ()
   "Moves the current line to the 'Waiting for' context and adds today's date."
   (interactive)
+  (remove-todo)
   (move-beginning-of-line nil)
   (kill-line 1)
-  (goto-char (point-min))
-  (re-search-forward "^\\* Waiting for" nil nil)
-  (outline-forward-same-level 1)
+  (goto-end-of "Waiting for")
   (yank)
   (previous-line)
   (move-beginning-of-line nil)
@@ -175,18 +174,49 @@
   (left-char 3))
 
 
+
+(defun goto-end-of (context)
+  "Moves cursor to the start of the context that comes after 'context'"
+  (goto-char (point-min))
+  (re-search-forward (concat "^\\* " context))
+  (outline-forward-same-level 1))
+
+
 ;;; Adds a new item to the "Next actions" context
 (defun add-new-item ()
   "Adds a new item to the 'Next actions' context, pushing a mark first so you can navigate back where you were before."
   (interactive)
   (work)
   (push-mark)
-  (goto-char (point-min))
-  (re-search-forward "^\\* Next actions")
-  (outline-forward-same-level 1)
+  (goto-end-of "Next actions")
   (previous-line)
   (org-end-of-line)
   (org-meta-return))
+
+
+(defun remove-todo ()
+  "Remove TODO from current item"
+  (interactive)
+  (move-beginning-of-line nil)
+  (org-narrow-to-subtree)
+  (if (re-search-forward "^\\*\\* TODO" nil t)
+      (replace-match "**" nil nil))
+  (widen))
+
+
+
+(defun done-for-now ()
+  "Remove TODO, move item to the bottom of the context, and leaves point on the next line below where it started."
+  (interactive)
+  (remove-todo)
+  (move-beginning-of-line nil)
+  (let ((a (point)))
+    (outline-forward-same-level 1)
+    (kill-region a (point)))
+  (push-mark)
+  (goto-end-of "Next actions")
+  (yank)
+  (pop-global-mark))
 
 
 ;;; Convert ORG files to a prettier format, so I can send them by e-mail
@@ -240,6 +270,7 @@
 (global-set-key (kbd "<f5>")  'load-music)
 (global-set-key (kbd "<f8>")  'work)
 (global-set-key (kbd "<f9>")  'reset-checklist)
+(global-set-key (kbd "C-c d") 'done-for-now)
 (global-set-key (kbd "C-c n") 'add-new-item)
 (global-set-key (kbd "C-c t") 'move-to-top-daily-todo)
 (global-set-key (kbd "C-c w") 'move-to-waiting-for)
