@@ -217,6 +217,13 @@
     (goto-end-of "Next actions")
     (yank)))
 
+(defun goto-last-todo ()
+  "Go to the last TODO in the 'Next actions' context"
+  (interactive)
+  (goto-end-of "Next actions")
+  (re-search-backward "^\\*\\* TODO ")
+  (move-beginning-of-line nil))
+
 
 ;;; Convert ORG files to a prettier format, so I can send them by e-mail
 (defun prettify-org-file ()
@@ -271,6 +278,7 @@
 (global-set-key (kbd "<f9>")  'reset-checklist)
 (global-set-key (kbd "C-c d") 'done-for-now)
 (global-set-key (kbd "C-c n") 'add-new-item)
+(global-set-key (kbd "C-c p") 'goto-last-todo)
 (global-set-key (kbd "C-c t") 'move-to-top-daily-todo)
 (global-set-key (kbd "C-c w") 'move-to-waiting-for)
 
