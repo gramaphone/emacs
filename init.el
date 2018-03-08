@@ -213,10 +213,9 @@
   (let ((a (point)))
     (outline-forward-same-level 1)
     (kill-region a (point)))
-  (push-mark)
-  (goto-end-of "Next actions")
-  (yank)
-  (pop-global-mark))
+  (save-excursion
+    (goto-end-of "Next actions")
+    (yank)))
 
 
 ;;; Convert ORG files to a prettier format, so I can send them by e-mail
